@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react'
+import { useLanguage } from '../i18n/LanguageContext'
 import './Navbar.css'
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
-  const [lang, setLang] = useState('FR')
   const [menuOpen, setMenuOpen] = useState(false)
+  const { lang, setLang, t } = useLanguage()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60)
@@ -25,13 +26,13 @@ export default function Navbar() {
         </a>
 
         <div className={`navbar__links ${menuOpen ? 'open' : ''}`}>
-          <a href="#domaine" onClick={() => setMenuOpen(false)}>Domaines</a>
-          <a href="#methode" onClick={() => setMenuOpen(false)}>Méthode</a>
-          <a href="#services" onClick={() => setMenuOpen(false)}>Services</a>
-          <a href="#contacts" className="navbar__cta" onClick={() => setMenuOpen(false)}>Nous contacter</a>
+          <a href="#domaine" onClick={() => setMenuOpen(false)}>{t.nav.domaines}</a>
+          <a href="#methode" onClick={() => setMenuOpen(false)}>{t.nav.methode}</a>
+          <a href="#services" onClick={() => setMenuOpen(false)}>{t.nav.services}</a>
+          <a href="#contacts" className="navbar__cta" onClick={() => setMenuOpen(false)}>{t.nav.cta}</a>
           <div className="navbar__lang">
-            <button className={lang === 'FR' ? 'active' : ''} onClick={() => setLang('FR')}>FR</button>
-            <button className={lang === 'EN' ? 'active' : ''} onClick={() => setLang('EN')}>EN</button>
+            <button className={lang === 'fr' ? 'active' : ''} onClick={() => setLang('fr')}>FR</button>
+            <button className={lang === 'en' ? 'active' : ''} onClick={() => setLang('en')}>EN</button>
           </div>
         </div>
 

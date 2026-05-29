@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { useLanguage } from '../i18n/LanguageContext'
 import './Stats.css'
 
 function Counter({ target, suffix = '', duration = 2000 }) {
@@ -31,45 +32,35 @@ function Counter({ target, suffix = '', duration = 2000 }) {
   return <span ref={ref}>{count}{suffix}</span>
 }
 
+const targets = [1, 4, 100, 3]
+const suffixes = ['', '', '%', 'x']
+
 export default function Stats() {
+  const { t } = useLanguage()
+  const s = t.stats
+
   return (
     <section className="stats" id="methode">
       <div className="container">
         <div className="stats__grid">
-          <div className="stats__item reveal">
-            <div className="stats__number">
-              <Counter target={1} />
+          {s.items.map((item, i) => (
+            <div key={i} className={`stats__item reveal${i > 0 ? ` reveal-delay-${i}` : ''}`}>
+              <div className="stats__number">
+                <Counter target={targets[i]} suffix={suffixes[i]} />
+              </div>
+              <div className="stats__label">{item.label}</div>
             </div>
-            <div className="stats__label">Méthode</div>
-          </div>
-          <div className="stats__item reveal reveal-delay-1">
-            <div className="stats__number">
-              <Counter target={4} />
-            </div>
-            <div className="stats__label">Étapes</div>
-          </div>
-          <div className="stats__item reveal reveal-delay-2">
-            <div className="stats__number">
-              <Counter target={100} suffix="%" />
-            </div>
-            <div className="stats__label">Discrétion</div>
-          </div>
-          <div className="stats__item reveal reveal-delay-3">
-            <div className="stats__number">
-              <Counter target={3} suffix="x" />
-            </div>
-            <div className="stats__label">ROI moyen</div>
-          </div>
+          ))}
         </div>
 
         <div className="stats__method reveal reveal-delay-1">
-          <div className="stats__method-label">Notre méthode</div>
+          <div className="stats__method-label">{s.methodLabel}</div>
           <h2 className="stats__method-title">
-            Une démarche itérative,<br />orientée valeur et simplicité d'usage.
+            {s.methodTitle.split('\n').map((line, i) => (
+              <span key={i}>{line}{i < 1 && <br />}</span>
+            ))}
           </h2>
-          <p className="stats__method-sub">
-            Comprendre &rarr; Cadrer &rarr; Prototyper &rarr; Déployer & améliorer.
-          </p>
+          <p className="stats__method-sub">{s.methodSub}</p>
         </div>
       </div>
     </section>
