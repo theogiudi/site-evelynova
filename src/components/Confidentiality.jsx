@@ -18,8 +18,8 @@ export default function Confidentiality() {
           <div className="confid__content">
             <span className="section-label">{c.label}</span>
             <h2 className="confid__title">
-              {c.title}<br />
-              <span className="confid__title--gray">{c.titleGray}</span>
+              {c.title}
+              {c.titleGray && <><br /><span className="confid__title--gray">{c.titleGray}</span></>}
             </h2>
             <p className="confid__text">{c.text}</p>
             <a href="#contacts" className="btn btn--primary">{c.btn}</a>

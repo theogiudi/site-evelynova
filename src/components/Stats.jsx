@@ -32,8 +32,8 @@ function Counter({ target, suffix = '', duration = 2000 }) {
   return <span ref={ref}>{count}{suffix}</span>
 }
 
-const targets = [1, 4, 100, 3]
-const suffixes = ['', '', '%', 'x']
+const targets = [6, 4, 2, 24]
+const suffixes = ['', '', '', 'h']
 
 export default function Stats() {
   const { t } = useLanguage()

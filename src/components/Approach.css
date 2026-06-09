@@ -3,15 +3,6 @@
   background: var(--gray-100);
 }
 
-.section-label {
-  display: inline-block;
-  font-size: 0.78rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--green);
-  margin-bottom: 16px;
-}
 
 .approach__header {
   margin-bottom: 56px;

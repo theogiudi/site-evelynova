@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext'
 import './Navbar.css'
 
@@ -16,7 +17,7 @@ export default function Navbar() {
   return (
     <nav className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}>
       <div className="navbar__inner">
-        <a href="#" className="navbar__logo">
+        <a href="/" className="navbar__logo">
           <img
             src={scrolled ? '/Logo_Noir.svg' : '/Logo_Blanc.svg'}
             alt="Evelynova"
@@ -26,13 +27,15 @@ export default function Navbar() {
         </a>
 
         <div className={`navbar__links ${menuOpen ? 'open' : ''}`}>
-          <a href="#domaine" onClick={() => setMenuOpen(false)}>{t.nav.domaines}</a>
-          <a href="#methode" onClick={() => setMenuOpen(false)}>{t.nav.methode}</a>
-          <a href="#services" onClick={() => setMenuOpen(false)}>{t.nav.services}</a>
-          <a href="#contacts" className="navbar__cta" onClick={() => setMenuOpen(false)}>{t.nav.cta}</a>
+          <a href="/#domaine" onClick={() => setMenuOpen(false)}>{t.nav.domaines}</a>
+          <a href="/#methode" onClick={() => setMenuOpen(false)}>{t.nav.methode}</a>
+          <a href="/#services" onClick={() => setMenuOpen(false)}>{t.nav.services}</a>
+          <Link to="/realisations" onClick={() => setMenuOpen(false)}>{t.nav.portfolio}</Link>
+          <a href="/#contacts" className="navbar__cta" onClick={() => setMenuOpen(false)}>{t.nav.cta}</a>
           <div className="navbar__lang">
             <button className={lang === 'fr' ? 'active' : ''} onClick={() => setLang('fr')}>FR</button>
             <button className={lang === 'en' ? 'active' : ''} onClick={() => setLang('en')}>EN</button>
+            <button className={lang === 'es' ? 'active' : ''} onClick={() => setLang('es')}>ES</button>
           </div>
         </div>
 
